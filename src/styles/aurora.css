@@ -1,0 +1,82 @@
+@keyframes driftA {
+  0% {
+    transform: translate3d(-6%, -4%, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(5%, 7%, 0) scale(1.08);
+  }
+  66% {
+    transform: translate3d(-3%, 5%, 0) scale(0.96);
+  }
+  100% {
+    transform: translate3d(-6%, -4%, 0) scale(1);
+  }
+}
+
+@keyframes driftB {
+  0% {
+    transform: translate3d(6%, -5%, 0) scale(1.05);
+  }
+  33% {
+    transform: translate3d(-7%, 3%, 0) scale(0.95);
+  }
+  66% {
+    transform: translate3d(4%, -7%, 0) scale(1.1);
+  }
+  100% {
+    transform: translate3d(6%, -5%, 0) scale(1.05);
+  }
+}
+
+@keyframes driftC {
+  0% {
+    transform: translate3d(0%, 6%, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-4%, -8%, 0) scale(1.12);
+  }
+  100% {
+    transform: translate3d(0%, 6%, 0) scale(1);
+  }
+}
+
+@keyframes driftD {
+  0% {
+    transform: translate3d(-5%, 0%, 0) scale(0.98);
+  }
+  50% {
+    transform: translate3d(6%, 6%, 0) scale(1.06);
+  }
+  100% {
+    transform: translate3d(-5%, 0%, 0) scale(0.98);
+  }
+}
+
+.aurora-blob {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.aurora-reduced-motion .aurora-blob {
+  animation-play-state: paused !important;
+}
+
+@keyframes gradient-border {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient-border {
+  animation: gradient-border 6s ease-in-out infinite;
+}
