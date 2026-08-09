@@ -13,7 +13,7 @@ export const AURORA_MAX_SIZE = 680;
 export const AURORA_BLUR_PX = 90;
 export const AURORA_DRIFT_DURATION_MIN = 42;
 export const AURORA_DRIFT_DURATION_MAX = 72;
-export const AURORA_BASE_OPACITY = 0.38;
+export const AURORA_BASE_OPACITY = 0.5;
 export const AURORA_POS_TOP_MIN = -15;
 export const AURORA_POS_TOP_MAX = 75;
 export const AURORA_POS_LEFT_MIN = -20;
@@ -27,8 +27,8 @@ export const BREATHING_DEPTH = 0.25;
 export type DeviceTier = 'high' | 'low';
 
 export const PARTICLE_COUNTS: Record<DeviceTier, number> = {
-  high: 58,
-  low: 24,
+  high: 100,
+  low: 50,
 };
 
 export const NETWORK_DISTANCE: Record<DeviceTier, number> = {
@@ -70,7 +70,7 @@ export const PARTICLE_GLOW_THRESHOLD_ALPHA = 0.7;
 export const PARTICLE_GLOW_RADIUS_MULT = 2.6;
 export const PARTICLE_GLOW_ALPHA_MULT = 0.32;
 export const PARTICLE_RESIZE_DEBOUNCE_MS = 150;
-export const PARTICLE_UPWARD_SPEED = 0.025;
+export const PARTICLE_UPWARD_SPEED = 0.8;
 
 export const PARTICLE_CORE_PALETTE: ReadonlyArray<{ r: number; g: number; b: number }> = [
   { r: 191, g: 219, b: 254 },

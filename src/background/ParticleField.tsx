@@ -4,6 +4,7 @@ import {
   NETWORK_DISTANCE,
   PARTICLE_AMPLITUDE_MAX,
   PARTICLE_AMPLITUDE_MIN,
+  PARTICLE_UPWARD_SPEED,
   PARTICLE_BASE_ALPHA,
   PARTICLE_BASE_RADIUS,
   PARTICLE_BASE_RADIUS_MAX_MULT,
@@ -36,7 +37,6 @@ import {
   PARTICLE_WANDER_SPEED_MIN,
   PARTICLE_WANDER_STRENGTH,
   PARTICLE_WRAP_MARGIN,
-  PARTICLE_UPWARD_SPEED,
   type DeviceTier,
 } from '../constants/auroraConfig';
 import {
@@ -217,7 +217,7 @@ export function ParticleField({
         const wanderX = Math.cos(p.wanderAngle) * PARTICLE_WANDER_STRENGTH;
         const wanderY = Math.sin(p.wanderAngle) * PARTICLE_WANDER_STRENGTH;
         const desiredVx = driftX + wanderX;
-        const desiredVy = driftY + wanderY - PARTICLE_UPWARD_SPEED;
+        const desiredVy = driftY + wanderY;
 
         p.vx = lerp(p.vx, desiredVx, velLerp);
         p.vy = lerp(p.vy, desiredVy, velLerp);
@@ -239,9 +239,8 @@ export function ParticleField({
         }
 
         p.x += p.vx;
-        p.y += p.vy - PARTICLE_UPWARD_SPEED;
-        p.vx = lerp(p.vx, desiredVx, velLerp);
-        p.vy = lerp(p.vy, desiredVy, velLerp);
+        p.y += p.vy;
+        p.y -= PARTICLE_UPWARD_SPEED;
 
         p.vx *= damping;
         p.vy *= damping;
@@ -257,6 +256,7 @@ export function ParticleField({
           p.y = -margin;
         }
       }
+
     };
 
     const drawParticles = (
