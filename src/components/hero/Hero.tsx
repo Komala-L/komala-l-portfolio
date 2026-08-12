@@ -1,7 +1,22 @@
 import { useEffect, useState } from "react";
 import { motion, type Variants, AnimatePresence } from "framer-motion";
 import komala from "../../assets/images/komala.png";
-import {Github, Linkedin, Mail, Code2,} from "lucide-react";
+
+import {
+  Terminal,
+  Sparkles,
+  ArrowUpRight,
+  FileText,
+  ShieldCheck,
+  Code2,
+  Cpu,
+  Github,
+  Linkedin,
+  Mail,
+  CheckCircle2,
+  MapPin,
+  Layers,
+} from "lucide-react";
 
 const fadeUp: Variants = {
     hidden: {
@@ -49,101 +64,91 @@ const fadeRight: Variants = {
 };
 
 const roles = [
-    "Backend Developer",
-    "Full Stack Developer",
-    "Node.js Developer",
-    "Software Engineer",
+  "MERN Stack Developer",
+  "Full-Stack Systems Engineer",
+  "REST API Architect",
 ];
 
 export default function Hero() {
-    const [roleIndex, setRoleIndex] = useState(0);
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setRoleIndex((current) => (current + 1) % roles.length);
-        }, 2500);
+  const [roleIndex, setRoleIndex] = useState(0);
 
-        return () => clearInterval(interval);
-    }, []);
+  // Cycle through dynamic titles
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRoleIndex((prev) => (prev + 1) % roles.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
-    return (
-        <section className="relative flex min-h-screen items-center">
-            <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-16 px-6 py-20 sm:px-6 sm:py-20 lg:flex-row lg:gap-24 lg:px-12">
-               
-                {/* LEFT SIDE */}
-                <div className="order-2 w-full flex-1 text-center lg:order-1 lg:text-left lg:max-w-[620px]">
-                    {/* Availability Badge */}
-                    <motion.div
-                        variants={fadeUp}
-                        initial="hidden"
-                        animate="visible"
-                        className="inline-flex max-w-full items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-2 text-xs text-cyan-200 backdrop-blur-md sm:px-4 sm:text-sm"
-                    >
-                        <span className="h-2 w-2 animate-pulse rounded-full bg-green-400"></span>
+  return (
+    <section id="hero" className="relative min-h-screen pt-28 pb-16 flex items-center justify-center bg-transparent overflow-hidden">
+      
+      {/* Background Ambient Orbs */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/15 rounded-full blur-[120px] pointer-events-none -z-10" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/15 rounded-full blur-[120px] pointer-events-none -z-10" />
 
-                        Available for Internships & Full-Time Roles
-                    </motion.div>
+      <div className="max-w-6xl mx-auto px-6 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          {/* LEFT COLUMN: INTRO & CALL TO ACTION (7 COLS) */}
+          <div className="lg:col-span-7 space-y-6 text-left">
+            
+            {/* Availability Pill */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-cyan-500/30 text-cyan-300 text-xs font-mono backdrop-blur-md shadow-[0_0_15px_rgba(6,182,212,0.2)]">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+              <span className="w-2 h-2 rounded-full bg-emerald-400 -ml-4" />
+              <span>Available for Internships & Full-Time Roles</span>
+            </div>
 
+            {/* Dynamic Headline */}
+            <div className="space-y-2">
+              <h1 className="text-4xl md:text-6xl font-extrabold text-white tracking-tight leading-[1.1]">
+                Turning ideas into <br />
+                <span className="bg-gradient-to-r from-cyan-400 via-teal-300 to-purple-400 bg-clip-text text-transparent">
+                  scalable products.
+                </span>
+              </h1>
 
-                    {/* Heading */}
-                    <motion.h1
-                        variants={fadeLeft}
-                        initial="hidden"
-                        animate="visible"
-                        className="mt-6 text-4xl font-bold leading-[1.05] text-white sm:text-5xl lg:mt-8 lg:text-7xl"
-                    >
-                        Turning
-                        <br />
+              {/* Dynamic Terminal Role Switcher */}
+              <div className="flex items-center gap-2 pt-2 text-sm md:text-base font-mono text-cyan-300/90">
+                <Terminal className="w-4 h-4 text-cyan-400 shrink-0" />
+                <span className="text-slate-400">$ role --current</span>
+                <span className="text-purple-300 font-semibold transition-all duration-500 underline decoration-cyan-400/50 underline-offset-4">
+                  "{roles[roleIndex]}"
+                </span>
+              </div>
+            </div>
 
-                        <span className="bg-gradient-to-r from-cyan-300 via-blue-300 to-violet-400 bg-clip-text text-transparent">
-                            ideas into scalable
-                        </span>
+            {/* Sub-description */}
+            <p className="text-sm md:text-base text-slate-300/80 leading-relaxed max-w-xl">
+              Passionate about creating scalable web applications with clean architecture, intuitive user experiences, and high-performance backend systems.
+            </p>
 
-                        <br />
+            {/* CTA Action Buttons */}
+            <div className="flex flex-wrap items-center gap-4 pt-2">
+              {/* Primary CTA */}
+              <a
+                href="#projects"
+                className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 via-cyan-400 to-purple-500 text-slate-950 font-mono font-bold text-xs uppercase tracking-wider flex items-center gap-2 shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:shadow-[0_0_35px_rgba(6,182,212,0.7)] hover:scale-105 transition-all group"
+              >
+                <span>View Projects</span>
+                <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </a>
 
-                        products.
-                    </motion.h1>
+              {/* Secondary Wireframe CTA */}
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3.5 rounded-xl bg-slate-950/80 border border-cyan-500/40 hover:border-cyan-300 text-cyan-200 hover:text-white font-mono font-semibold text-xs uppercase tracking-wider flex items-center gap-2 backdrop-blur-xl hover:bg-cyan-500/10 transition-all"
+              >
+                <FileText className="w-4 h-4 text-cyan-400" />
+                <span>View Resume</span>
+              </a>
+            </div>
 
-
-                    {/* Description */}
-                    <motion.p
-                        variants={fadeUp}
-                        initial="hidden"
-                        animate="visible"
-                        transition={{ delay: 0.25 }}
-                        className="mx-auto mt-6 max-w-lg text-base leading-7 text-slate-300 sm:text-lg sm:leading-8 lg:mx-0 lg:mt-8"
-                    >
-                        I'm Komala, a MERN Stack Developer passionate about creating
-                        scalable web applications with clean architecture, intuitive
-                        user experiences, and high-performance backend systems.
-                    </motion.p>
-
-
-                    {/* Buttons */}
-                    <motion.div
-                        variants={fadeUp}
-                        initial="hidden"
-                        animate="visible"
-                        transition={{ delay: 0.45 }}
-                        className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:justify-center lg:mt-10 lg:justify-start"
-                    >
-                        <a
-                            href="#projects"
-                            className="w-full rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 px-8 py-4 font-semibold text-slate-950 transition hover:scale-105 sm:w-auto"
-                        >
-                            View Projects
-                        </a>
-
-                        <a
-                            href="/resume.pdf"
-                            className="w-full rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 px-8 py-4 font-semibold text-slate-950 transition hover:scale-105 sm:w-auto"
-                        >
-                            Download Resume
-                        </a>
-                    </motion.div>
-
-
-                    {/* Social Icons */}
-                    <motion.div
+            {/* Social Icons */}
+                     <motion.div
                         variants={fadeUp}
                         initial="hidden"
                         animate="visible"
@@ -191,194 +196,96 @@ export default function Hero() {
 
                     </motion.div>
 
-                </div>
+          </div>
 
-
-                {/* RIGHT SIDE */}
-                <div className="order-1 relative flex w-full flex-1 justify-center lg:order-2 lg:max-w-[500px]">
-                    {/* Photo + Card Container */}
-                    <div className="relative">
-
-                        {/* Animated Glow */}
-                        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-                            <div
-                                className="
-                                    h-[360px]
-                                    w-[280px]
-                                    rounded-full
-                                    bg-gradient-to-r
-                                    from-cyan-500/25
-                                    via-violet-500/20
-                                    to-blue-500/25
-                                    blur-[140px]
-                                    animate-pulse
-                                    sm:h-[420px]
-                                    sm:w-[320px]
-                                "
-                            />
-                        </div>
-
-                        {/* Glass Frame */}
-                        <motion.div
-                            variants={fadeRight}
-                            initial="hidden"
-                            animate="visible"
-                            transition={{ delay: 0.35 }}
-                            className="group relative z-10 animate-float-slow rounded-[40px] p-[1px] transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02]"
-                        >
-                            {/* Animated Gradient Border */}
-                            <div
-                                className="
-                                    absolute inset-0
-                                    rounded-[40px]
-                                    bg-[linear-gradient(120deg,rgba(34,211,238,0.8),rgba(139,92,246,0.8),rgba(34,211,238,0.8))]
-                                    bg-[length:200%_200%]
-                                    animate-gradient-border
-                                    opacity-80
-                                "
-                            />
-
-                            {/* Inner Glass Frame */}
-                            <div className="relative overflow-hidden rounded-[39px] bg-slate-950/60 backdrop-blur-xl">
-
-                            {/* Cyan Glow */}
-                            <div
-                                className="
-                                    absolute
-                                    -inset-10
-                                    -z-10
-                                    rounded-full
-                                    bg-cyan-400/15
-                                    blur-[80px]
-                                    opacity-40
-                                    transition-all
-                                    duration-700
-                                    group-hover:opacity-100
-                                    group-hover:scale-110
-                                "
-                            />
-
-                            {/* Profile Image */}
-                            <img
-                                src={komala}
-                                alt="Komala"
-                                className="h-full w-full object-cover transition-all duration-700 group-hover:scale-105 sm:h-[550px] sm:w-[380px] lg:h-[600px] lg:w-[420px]"
-                            />
-
-                            {/* Glass Shine */}
-                            <div
-                                className="
-                                    pointer-events-none
-                                    absolute
-                                    top-0
-                                    -left-[120%]
-                                    h-full
-                                    w-[45%]
-                                    -skew-x-12
-                                    bg-gradient-to-r
-                                    from-transparent
-                                    via-white/25
-                                    to-transparent
-                                    opacity-0
-                                    transition-all
-                                    duration-700
-                                    ease-out
-                                    group-hover:left-[140%]
-                                    group-hover:opacity-100
-                                "
-                            />
-
-                            {/* Glass Reflection */}
-                            <div
-                                className="
-                                    pointer-events-none
-                                    absolute
-                                    inset-0
-                                    bg-gradient-to-tr
-                                    from-transparent
-                                    via-white/5
-                                    to-cyan-300/10
-                                    opacity-0
-                                    transition-opacity
-                                    duration-500
-                                    group-hover:opacity-100
-                                  "
-                            />
-                            </div>
-                        </motion.div>
-
-                        {/* Open to Work Card */}
-                        <div
-                            className="
-                                absolute
-                                -bottom-6
-                                left-1/2
-                                z-20
-                                w-[calc(100%-1rem)]
-                                max-w-[340px]
-                                -translate-x-1/2
-                                sm:-bottom-8
-                                sm:w-auto
-                                sm:max-w-none
-                                min-w-[300px]
-                                sm:min-w-[320px]
-                                lg:-left-8
-                                lg:translate-x-0
-                            "
-                        >
-                            <motion.div
-                                initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                                animate={{ opacity: 1, y: 0, scale: 1 }}
-                                transition={{
-                                    delay: 1,
-                                    duration: 0.7,
-                                    ease: "easeOut",
-                                }}
-                                className="
-                                    animate-float
-                                    rounded-2xl
-                                    border border-cyan-400/20
-                                    bg-slate-900/60
-                                    px-5 py-4
-                                    backdrop-blur-xl
-                                    shadow-[0_20px_50px_rgba(0,0,0,0.35)]
-                                "
-                            >
-                                <div className="flex items-center gap-3">
-                                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-cyan-400/10">
-                                        🚀
-                                    </div>
-
-                                    <div>
-                                        <h3 className="text-lg font-semibold text-white">
-                                            Open to Work
-                                        </h3>
-
-                                        <div className="relative h-5 ">
-                                        <AnimatePresence mode="wait">
-                                            <motion.p
-                                                key={roles[roleIndex]}
-                                                initial={{ opacity: 0, y: 15 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                exit={{ opacity: 0, y: -15 }}
-                                                transition={{ duration: 0.35, ease: "easeOut" }}
-                                                className="absolute whitespace-nowrap text-sm text-slate-300"
-                                            >
-                                                {roles[roleIndex]}
-                                            </motion.p>
-                                        </AnimatePresence>
-                                    </div>
-
-                                        <p className="mt-1 text-xs text-cyan-300">
-                                            Bangalore • India
-                                        </p>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        </div>
-                    </div>
-                </div>
+          {/* RIGHT COLUMN: HOLOGRAPHIC HUD PORTRAIT STAGE (5 COLS) */}
+          <div className="lg:col-span-5 relative flex justify-center">
+            
+            {/* Floating Orbiting Skill Tags */}
+            <div className="absolute -top-4 -left-4 z-20 px-3 py-1.5 rounded-xl bg-slate-950/90 border border-cyan-500/40 text-cyan-300 text-xs font-mono flex items-center gap-1.5 shadow-[0_0_15px_rgba(6,182,212,0.3)] animate-bounce" style={{ animationDuration: "6s" }}>
+              <Code2 className="w-3.5 h-3.5 text-cyan-400" />
+              React.js
             </div>
-        </section>
-    );
+
+            <div className="absolute top-1/2 -right-6 z-20 px-3 py-1.5 rounded-xl bg-slate-950/90 border border-purple-500/40 text-purple-300 text-xs font-mono flex items-center gap-1.5 shadow-[0_0_15px_rgba(168,85,247,0.3)] animate-bounce" style={{ animationDuration: "5s", animationDelay: "1s" }}>
+              <Cpu className="w-3.5 h-3.5 text-purple-400" />
+              Node.js & Express
+            </div>
+
+            <div className="absolute -bottom-4 left-6 z-20 px-3 py-1.5 rounded-xl bg-slate-950/90 border border-cyan-500/40 text-cyan-200 text-xs font-mono flex items-center gap-1.5 shadow-[0_0_15px_rgba(6,182,212,0.3)]">
+              <Layers className="w-3.5 h-3.5 text-teal-400" />
+              MongoDB & Mongoose
+            </div>
+
+            {/* Main Cyber HUD Frame */}
+            <div className="relative group w-full max-w-md rounded-3xl p-2 bg-gradient-to-b from-cyan-500/30 via-purple-500/20 to-cyan-500/10 border border-cyan-500/40 backdrop-blur-2xl shadow-[0_0_40px_rgba(6,182,212,0.2)]">
+              
+              {/* Corner HUD Bracket Highlights */}
+              <div className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-cyan-400 rounded-tl-md z-20" />
+              <div className="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-cyan-400 rounded-tr-md z-20" />
+              <div className="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-purple-400 rounded-bl-md z-20" />
+              <div className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-purple-400 rounded-br-md z-20" />
+
+              {/* Photo Box Container */}
+              <div className="relative rounded-2xl overflow-hidden bg-slate-950">
+                <img
+                  src={komala}
+                  alt="Komala"
+                  className="w-full h-[500px] object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                />
+              {/* Glass Reflection */}
+              <div className=" pointer-events-none absolute top-0 -left-[120%] h-full w-[45%] -skew-x-12 bg-gradient-to-r from-transparent via-white/25 to-transparent opacity-0 transition-all duration-700 ease-out group-hover:left-[140%] group-hover:opacity-100"/>
+
+                {/* Subtle Cyber Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/20 pointer-events-none" />
+
+                {/* Floating "Open To Work" Status Card */}
+                <div className="absolute bottom-4 left-4 right-4 p-3.5 rounded-xl bg-slate-950/85 border border-cyan-500/30 backdrop-blur-xl flex items-center justify-between shadow-lg">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">
+                      <ShieldCheck className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <div className="text-xs font-bold text-white flex items-center gap-1.5">
+                        Open to Work
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                      </div>
+                      <div className="text-[10px] font-mono text-cyan-300/80 flex items-center gap-1 mt-0.5">
+                        <MapPin className="w-3 h-3 text-cyan-400" />
+                        Full Stack Developer • Bengaluru, IN
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* BOTTOM METRICS TELEMETRY STRIP */}
+        <div className="mt-16 pt-8 border-t border-cyan-900/30 grid grid-cols-2 md:grid-cols-4 gap-4 text-center font-mono">
+          <div className="p-4 rounded-xl bg-slate-900/40 border border-cyan-500/15 backdrop-blur-md">
+            <div className="text-xl md:text-2xl font-bold text-white">8+</div>
+            <div className="text-[11px] text-cyan-400/80 uppercase tracking-wider mt-1">REST API Endpoints</div>
+          </div>
+          <div className="p-4 rounded-xl bg-slate-900/40 border border-purple-500/15 backdrop-blur-md">
+            <div className="text-xl md:text-2xl font-bold text-white">100%</div>
+            <div className="text-[11px] text-purple-400/80 uppercase tracking-wider mt-1">ACID Transaction Safe</div>
+          </div>
+          <div className="p-4 rounded-xl bg-slate-900/40 border border-cyan-500/15 backdrop-blur-md">
+            <div className="text-xl md:text-2xl font-bold text-white">MVC</div>
+            <div className="text-[11px] text-cyan-400/80 uppercase tracking-wider mt-1">Service Layer Pattern</div>
+          </div>
+          <div className="p-4 rounded-xl bg-slate-900/40 border border-purple-500/15 backdrop-blur-md">
+            <div className="text-xl md:text-2xl font-bold text-white">JWT + RBAC</div>
+            <div className="text-[11px] text-purple-400/80 uppercase tracking-wider mt-1">Auth Security Standard</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
 }

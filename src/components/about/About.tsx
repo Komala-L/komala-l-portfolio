@@ -1,170 +1,242 @@
-import { motion } from "framer-motion";
+import React, { useState } from "react";
 import {
-  ArrowUpRight,
+  Terminal,
+  Cpu,
+  Layers,
+  Zap,
+  CheckCircle2,
   Code2,
+  Sparkles,
+  BookOpen,
+  ShieldCheck,
+  ArrowUpRight,
   Database,
-  Layers3,
+  Layout,
 } from "lucide-react";
 
-const focusAreas = [
-  {
-    icon: Code2,
-    title: "Frontend Engineering",
-    description:
-      "React, TypeScript, responsive interfaces and thoughtful interactions.",
-  },
-  {
-    icon: Layers3,
-    title: "Full-Stack Development",
-    description:
-      "Node.js, Express, REST APIs and application architecture.",
-  },
-  {
-    icon: Database,
-    title: "Backend & Data",
-    description:
-      "MongoDB, authentication, security and reliable backend systems.",
-  },
-];
-
 export default function About() {
-  return (
-    <section
-      id="about"
-      className="relative py-24 sm:py-32"
-    >
-      {/* Section heading */}
-      <div className="mb-14">
-        <div className="mb-6 flex items-center gap-3">
-          <span className="h-px w-8 bg-cyan-400/70" />
+  const [activeTab, setActiveTab] = useState<"story" | "mindset" | "specs">("story");
 
-          <span className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-300/80">
-            About / 01
+  return (
+    <section id="about" className="py-24 relative bg-transparent overflow-hidden">
+      
+      {/* Background Glow Orbs */}
+      <div className="absolute top-1/2 -left-32 w-80 h-80 bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-10 right-0 w-80 h-80 bg-purple-500/10 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
+        
+        {/* SECTION HEADER */}
+        <div className="flex items-center gap-3 mb-4">
+          <div className="p-2 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">
+            <Terminal className="w-4 h-4" />
+          </div>
+          <span className="text-xs font-mono text-cyan-400 tracking-widest uppercase">
+            ABOUT // SYSTEM_OVERVIEW
           </span>
         </div>
 
-        <h2 className="max-w-4xl text-4xl font-semibold leading-tight tracking-tight text-slate-100 sm:text-5xl lg:text-6xl">
-          Building with curiosity.
-          <br />
-          <span className="bg-gradient-to-r from-cyan-300 via-sky-300 to-violet-300 bg-clip-text text-transparent">
+        {/* MAIN HEADLINE */}
+        <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-12 max-w-3xl leading-tight">
+          Building with curiosity. <br />
+          <span className="bg-gradient-to-r from-cyan-400 via-teal-300 to-purple-400 bg-clip-text text-transparent">
             Engineering with purpose.
           </span>
         </h2>
-      </div>
 
-      {/* Main content */}
-      <div className="grid gap-16 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
+        {/* TWO COLUMN GRID */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          
+          {/* LEFT COLUMN: TABBED INTERACTIVE BIO (7 COLS) */}
+          <div className="lg:col-span-7 space-y-6">
+            
+            {/* Tab Controller Buttons */}
+            <div className="flex items-center gap-2 p-1.5 rounded-xl bg-slate-950/80 border border-cyan-500/20 backdrop-blur-md w-fit">
+              <button
+                onClick={() => setActiveTab("story")}
+                className={`px-4 py-2 rounded-lg text-xs font-mono font-semibold transition-all flex items-center gap-2 ${
+                  activeTab === "story"
+                    ? "bg-cyan-500/20 text-cyan-300 border border-cyan-400/40 shadow-[0_0_15px_rgba(6,182,212,0.25)]"
+                    : "text-slate-400 hover:text-white"
+                }`}
+              >
+                <BookOpen className="w-3.5 h-3.5" />
+                <span>01. Bio</span>
+              </button>
 
-        {/* Story */}
-        <div>
-          <p className="max-w-2xl text-lg leading-8 text-slate-300">
-            I'm Komala, a BCA student and developer who enjoys turning ideas
-            into thoughtful, reliable web experiences. I work across the
-            frontend and backend, with a particular interest in React,
-            TypeScript, Node.js, and API-driven applications.
-          </p>
+              <button
+                onClick={() => setActiveTab("mindset")}
+                className={`px-4 py-2 rounded-lg text-xs font-mono font-semibold transition-all flex items-center gap-2 ${
+                  activeTab === "mindset"
+                    ? "bg-purple-500/20 text-purple-300 border border-purple-400/40 shadow-[0_0_15px_rgba(168,85,247,0.25)]"
+                    : "text-slate-400 hover:text-white"
+                }`}
+              >
+                <Cpu className="w-3.5 h-3.5" />
+                <span>02. Mindset</span>
+              </button>
 
-          <p className="mt-7 max-w-2xl text-base leading-8 text-slate-300/80">
-            I care about more than making an interface look good. I enjoy
-            understanding how things work underneath — from component
-            architecture and state management to authentication, databases,
-            and backend APIs. My goal is to build software that feels
-            intuitive on the surface and is well-engineered underneath.
-          </p>
+              <button
+                onClick={() => setActiveTab("specs")}
+                className={`px-4 py-2 rounded-lg text-xs font-mono font-semibold transition-all flex items-center gap-2 ${
+                  activeTab === "specs"
+                    ? "bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 shadow-[0_0_15px_rgba(16,185,129,0.25)]"
+                    : "text-slate-400 hover:text-white"
+                }`}
+              >
+                <ShieldCheck className="w-3.5 h-3.5" />
+                <span>03. Specs</span>
+              </button>
+            </div>
 
-         <a
-            href="#projects"
-            className="group mt-8 inline-flex items-center gap-2 text-sm font-semibold text-slate-200 transition-colors hover:text-cyan-300"
-          >
-            Explore my work
-            <ArrowUpRight
-              size={16}
-              className="transition-transform duration-300 group-hover:translate-x-0.5"
-            />
-          </a>
-        </div>
+            {/* TAB CONTENT CARDS */}
+            <div className="p-6 md:p-8 rounded-2xl bg-slate-900/60 border border-cyan-500/20 backdrop-blur-xl shadow-[0_0_30px_rgba(2,6,23,0.5)] transition-all min-h-[220px]">
+              
+              {/* TAB 1: STORY */}
+              {activeTab === "story" && (
+                <div className="space-y-4 animate-fadeIn">
+                  <p className="text-slate-300 text-sm md:text-base leading-relaxed">
+                    I'm <strong className="text-cyan-300 font-semibold">Komala</strong>, a BCA student and full-stack developer who enjoys turning complex ideas into thoughtful, high-performance web experiences. I bridge the gap between intuitive user interfaces and robust backend architectures.
+                  </p>
+                  <p className="text-slate-400 text-sm leading-relaxed">
+                    I care deeply about understanding how systems operate under the hood—from React component lifecycles and state hydration to Express REST endpoints and optimized database queries.
+                  </p>
+                </div>
+              )}
 
-        {/* Focus tree */}
-        <div>
-          <div className="relative mt-12 lg:mt-0">
-        {/* Section label */}
-        <div className="mb-8 flex items-center gap-3">
-          <span className="h-px w-8 bg-cyan-400/70" />
+              {/* TAB 2: MINDSET */}
+              {activeTab === "mindset" && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-fadeIn">
+                  <div className="p-3.5 rounded-xl bg-slate-950/60 border border-cyan-500/20">
+                    <div className="text-xs font-mono text-cyan-300 font-bold mb-1 flex items-center gap-1.5">
+                      <Layout className="w-3.5 h-3.5 text-cyan-400" />
+                      Clean Architecture
+                    </div>
+                    <p className="text-xs text-slate-400">Modular component trees with strict separation of concerns.</p>
+                  </div>
 
-          <span className="text-[11px] font-semibold uppercase tracking-[0.28em] text-cyan-300/80">
-            Currently focused on
-          </span>
-        </div>
+                  <div className="p-3.5 rounded-xl bg-slate-950/60 border border-purple-500/20">
+                    <div className="text-xs font-mono text-purple-300 font-bold mb-1 flex items-center gap-1.5">
+                      <Database className="w-3.5 h-3.5 text-purple-400" />
+                      API & Data Safety
+                    </div>
+                    <p className="text-xs text-slate-400">RESTful design patterns with input validation & JWT auth.</p>
+                  </div>
 
-        {/* Focus tree */}
-        <div className="relative pl-7">
-          {/* Main vertical trunk */}
-          <div className="absolute left-1 top-2 bottom-2 w-px bg-gradient-to-b from-cyan-400/60 via-cyan-400/25 to-transparent" />
+                  <div className="p-3.5 rounded-xl bg-slate-950/60 border border-emerald-500/20">
+                    <div className="text-xs font-mono text-emerald-300 font-bold mb-1 flex items-center gap-1.5">
+                      <Zap className="w-3.5 h-3.5 text-emerald-400" />
+                      Performance
+                    </div>
+                    <p className="text-xs text-slate-400">Lighthouse score optimizations and lightweight bundle sizes.</p>
+                  </div>
 
-          <div className="space-y-8">
+                  <div className="p-3.5 rounded-xl bg-slate-950/60 border border-amber-500/20">
+                    <div className="text-xs font-mono text-amber-300 font-bold mb-1 flex items-center gap-1.5">
+                      <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                      UX Detail
+                    </div>
+                    <p className="text-xs text-slate-400">Fluid micro-interactions, responsive grids, and accessible UI.</p>
+                  </div>
+                </div>
+              )}
 
-            {/* Frontend */}
-            <div className="group relative">
-              {/* Branch */}
-              <div className="absolute -left-6 top-4 h-px w-6 bg-cyan-400/35 transition-all duration-300 group-hover:w-8 group-hover:bg-cyan-300/70" />
+              {/* TAB 3: SPECS */}
+              {activeTab === "specs" && (
+                <div className="grid grid-cols-2 gap-4 text-xs font-mono animate-fadeIn">
+                  <div className="p-3 rounded-lg bg-slate-950/60 border border-slate-800">
+                    <span className="text-slate-500 block">Degree</span>
+                    <span className="text-white font-semibold">Bachelor of Computer Applications</span>
+                  </div>
+                  <div className="p-3 rounded-lg bg-slate-950/60 border border-slate-800">
+                    <span className="text-slate-500 block">Primary Stack</span>
+                    <span className="text-cyan-300 font-semibold">MERN (Mongo, Express, React, Node)</span>
+                  </div>
+                  <div className="p-3 rounded-lg bg-slate-950/60 border border-slate-800">
+                    <span className="text-slate-500 block">Language Focus</span>
+                    <span className="text-purple-300 font-semibold">TypeScript & JavaScript (ES6+)</span>
+                  </div>
+                  <div className="p-3 rounded-lg bg-slate-950/60 border border-slate-800">
+                    <span className="text-slate-500 block">Status</span>
+                    <span className="text-emerald-400 font-semibold">Open for Roles & Internships</span>
+                  </div>
+                </div>
+              )}
 
-              {/* Node */}
-              <div className="absolute -left-[30px] top-[9px] h-2 w-2 rounded-full border border-cyan-300/70 bg-cyan-300/20 shadow-[0_0_10px_rgba(103,232,249,0.45)] transition-all duration-300 group-hover:scale-125 group-hover:bg-cyan-300/50" />
+            </div>
 
-              <div className="transition-transform duration-300 group-hover:translate-x-1">
-                <h3 className="text-base font-semibold text-slate-100">
+            {/* Quick Action Link */}
+            <a
+              href="#projects"
+              className="inline-flex items-center gap-2 text-xs font-mono text-cyan-400 hover:text-cyan-300 group pt-2 transition-colors"
+            >
+              <span>EXPLORE DEVELOPER PROJECTS</span>
+              <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
+
+          </div>
+
+          {/* RIGHT COLUMN: ACTIVE FOCUS MODULE CARDS (5 COLS) */}
+          <div className="lg:col-span-5 space-y-4">
+            
+            <div className="text-xs font-mono text-slate-400 uppercase tracking-wider flex items-center gap-2 mb-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+              <span>CURRENTLY_FOCUSED_ON</span>
+            </div>
+
+            {/* Focus Card 1 */}
+            <div className="group p-4 rounded-xl bg-slate-950/80 border border-cyan-500/30 hover:border-cyan-400 transition-all duration-300 hover:shadow-[0_0_20px_rgba(6,182,212,0.2)]">
+              <div className="flex items-center justify-between mb-1.5">
+                <span className="text-sm font-bold text-white group-hover:text-cyan-300 transition-colors flex items-center gap-2">
+                  <Code2 className="w-4 h-4 text-cyan-400" />
                   Frontend Engineering
-                </h3>
-
-                <p className="mt-1.5 text-sm leading-6 text-slate-400">
-                  React, TypeScript, responsive interfaces and interaction.
-                </p>
+                </span>
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-cyan-500/10 border border-cyan-500/30 text-cyan-300">
+                  ACTIVE
+                </span>
               </div>
+              <p className="text-xs text-slate-400">
+                React.js, TypeScript, and responsive Tailwind UI architecture.
+              </p>
             </div>
 
-            {/* Full Stack */}
-            <div className="group relative">
-              {/* Branch */}
-              <div className="absolute -left-6 top-4 h-px w-6 bg-violet-400/35 transition-all duration-300 group-hover:w-8 group-hover:bg-violet-300/70" />
-
-              {/* Node */}
-              <div className="absolute -left-[30px] top-[9px] h-2 w-2 rounded-full border border-violet-300/70 bg-violet-300/20 shadow-[0_0_10px_rgba(167,139,250,0.4)] transition-all duration-300 group-hover:scale-125 group-hover:bg-violet-300/50" />
-
-              <div className="transition-transform duration-300 group-hover:translate-x-1">
-                <h3 className="text-base font-semibold text-slate-100">
+            {/* Focus Card 2 */}
+            <div className="group p-4 rounded-xl bg-slate-950/80 border border-purple-500/30 hover:border-purple-400 transition-all duration-300 hover:shadow-[0_0_20px_rgba(168,85,247,0.2)]">
+              <div className="flex items-center justify-between mb-1.5">
+                <span className="text-sm font-bold text-white group-hover:text-purple-300 transition-colors flex items-center gap-2">
+                  <Layers className="w-4 h-4 text-purple-400" />
                   Full-Stack Development
-                </h3>
-
-                <p className="mt-1.5 text-sm leading-6 text-slate-400">
-                  Node.js, Express, REST APIs and application architecture.
-                </p>
+                </span>
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-purple-500/10 border border-purple-500/30 text-purple-300">
+                  OPTIMIZING
+                </span>
               </div>
+              <p className="text-xs text-slate-400">
+                Node.js, Express, RESTful APIs, and full end-to-end data pipelines.
+              </p>
             </div>
 
-            {/* Backend */}
-            <div className="group relative">
-              {/* Branch */}
-              <div className="absolute -left-6 top-4 h-px w-6 bg-sky-400/35 transition-all duration-300 group-hover:w-8 group-hover:bg-sky-300/70" />
-
-              {/* Node */}
-              <div className="absolute -left-[30px] top-[9px] h-2 w-2 rounded-full border border-sky-300/70 bg-sky-300/20 shadow-[0_0_10px_rgba(125,211,252,0.4)] transition-all duration-300 group-hover:scale-125 group-hover:bg-sky-300/50" />
-
-              <div className="transition-transform duration-300 group-hover:translate-x-1">
-                <h3 className="text-base font-semibold text-slate-100">
-                  Backend & Data
-                </h3>
-
-                <p className="mt-1.5 text-sm leading-6 text-slate-400">
-                  MongoDB, authentication, security and backend systems.
-                </p>
+            {/* Focus Card 3 */}
+            <div className="group p-4 rounded-xl bg-slate-950/80 border border-emerald-500/30 hover:border-emerald-400 transition-all duration-300 hover:shadow-[0_0_20px_rgba(16,185,129,0.2)]">
+              <div className="flex items-center justify-between mb-1.5">
+                <span className="text-sm font-bold text-white group-hover:text-emerald-300 transition-colors flex items-center gap-2">
+                  <Database className="w-4 h-4 text-emerald-400" />
+                  Backend & Databases
+                </span>
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-500/10 border border-emerald-500/30 text-emerald-300">
+                  SECURED
+                </span>
               </div>
+              <p className="text-xs text-slate-400">
+                MongoDB schema modeling, authentication routines, and database optimization.
+              </p>
             </div>
 
           </div>
+
         </div>
+
       </div>
-    </div>
-  </div>
-</section>
+    </section>
   );
 }
